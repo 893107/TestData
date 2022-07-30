@@ -26,25 +26,24 @@ public class CsvJob {
 	private final CsvReader csvReader;
 	private final CsvProcessor csvProcessor;
 	private final CsvWriter csvWriter;
-	
 	private static final int chunkSize = 5;
 	
-	
+	//select -> 
 	@Bean 
 	public Job csvJob1_batchBuild() {
 		return jobBuilderFactory.get("csvJob1")
 				.start(csvJob1_batchStep1())
 				.build();
 	}
-
+	
 	
 	@Bean
 	public Step csvJob1_batchStep1() {
 		return stepBuilderFactory.get("csvJob1_batchStep1")
 				.<FirstName,FirstName>chunk(chunkSize)
-				.reader(csvReader.csvJob1_FileReader())
-				.processor(csvProcessor.processor())
-				.writer(csvWriter)
+				.reader(csvReader.csvJob1_FileReader()) //읽기  FirstName
+				.processor(csvProcessor.processor()) //가공
+				.writer(csvWriter) //액션
 				.build();
 	}
 

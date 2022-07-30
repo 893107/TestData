@@ -22,6 +22,35 @@ public class CsvWriter implements ItemWriter<FirstName>{
 	@Autowired
     private final DataRepository dataRepo;
 	
+	
+
+	
+	@Override
+	public void write(List<? extends FirstName> items) throws Exception {
+		
+		
+		
+		for(FirstName firstname : items) {
+
+			log.debug(firstname.toString());
+
+			List<FirstName> a = dataRepo.findByFname(firstname.getFname());
+			
+			if(a.isEmpty()) {
+				dataRepo.save(firstname);
+			}else {
+				
+				a.get(0).setOccupy(String.valueOf(Integer.parseInt(firstname.getOccupy()) 
+						+ Integer.parseInt(a.get(0).getOccupy())));
+				dataRepo.save(a.get(0));
+				
+			}
+			
+		}
+
+	}
+	
+	
 //    @Bean //쓰기
 //	public ItemWriter<FirstName> printItemWriter(){
 //		return list -> {
@@ -29,27 +58,21 @@ public class CsvWriter implements ItemWriter<FirstName>{
 //				log.debug(firstname.toString());
 //			}
 //		};
-//	}
-
-	@Override
-	public void write(List<? extends FirstName> items) throws Exception {
-		for(FirstName firstname : items) {
-			log.debug(firstname.toString());
-			dataRepo.save(firstname);
-		}
-//		List<FirstName> firstnameList = new ArrayList<>();
+//	}		
+	
+//	List<FirstName> firstnameList = new ArrayList<>();
+//	
+//	firstnameList.forEach(getFirstName -> {
+//		FirstName firstname = new FirstName();
+//		firstname.setFname(getFirstName.getFname());
+//		firstname.setOccupy(getFirstName.getOccupy());
+//		log.debug(firstname.toString());
 //		
-//		firstnameList.forEach(getFirstName -> {
-//			FirstName firstname = new FirstName();
-//			firstname.setFname(getFirstName.getFname());
-//			firstname.setOccupy(getFirstName.getOccupy());
-//			log.debug(firstname.toString());
-//			
-//			firstnameList.add(firstname);
-//		});
-//		
-//		dataRepo.saveAll(firstnameList);
-	}
+//		firstnameList.add(firstname);
+//	});
+//	
+//	dataRepo.saveAll(firstnameList);	
+	
 //    @Bean //쓰기
 //   	public ItemWriter<FirstName> printItemWriter(){
 //   		return list -> {
