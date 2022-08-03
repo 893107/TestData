@@ -137,11 +137,11 @@ Arguments 상단 Program Arguments 입력칸에 해당 코드를 입력합니다
 ⚠️주의⚠️ : 해당 코드는 서버 재실행시 수정을 해줘야 합니다 
 프로젝트 실행시 해당 회차에서 발생한 오류를 기억하고 있으므로 정상 실행이 되지 않을 수 있습니다.
 
---job.name=csvJob1 v=1 date=20220728
+--job.name=csvJob v=1 date=20220728
 
 : 다음과 같이 수정하여 사용합니다.
 ex) 2022/07/30 실행, 테스트 3회차(서버 실행 3회차)
---job.name=csvJob1 v=3 date=20220730
+--job.name=csvJob v=3 date=20220730
 
 최초 실행 이후, 재실행시 v=n 코드에 n+1을 하여 사용하세요.
 </code>
