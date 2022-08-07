@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import com.psc.sample.springbatch.domain.FirstName;
 import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,31 @@ public class CsvReader {
 		return flatFileItemReader;
 
 	}
+	
+	@Bean
+	public FlatFileItemReader<FirstName> Firstname_FileReader() {
+		FlatFileItemReader<FirstName> flatFileItemReader = new FlatFileItemReader<>();
+		flatFileItemReader.setResource(new ClassPathResource("/sample/name2.csv"));
+		flatFileItemReader.setLinesToSkip(1);
+		flatFileItemReader.setEncoding("UTF-8");
+
+		DefaultLineMapper<FirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
+
+		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
+		delimitedLineTokenizer.setNames("lname", "occupy");
+		delimitedLineTokenizer.setDelimiter(",");
+
+		BeanWrapperFieldSetMapper<FirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FirstName>();
+		beanWrapperFieldSetMapper.setTargetType(FirstName.class);
+
+		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
+		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
+		flatFileItemReader.setLineMapper(dtoDefaultLineMapper);
+
+		log.debug("Finish file to read");
+		return flatFileItemReader;
+
+	}
+
 
 }

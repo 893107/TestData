@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.psc.sample.springbatch.domain.DataRepository;
+import com.psc.sample.springbatch.domain.DataRepository2;
+import com.psc.sample.springbatch.domain.FirstName;
 import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ public class CsvWriter implements ItemWriter<LastName> {
 
 	@Autowired
 	private final DataRepository dataRepo;
+	private final DataRepository2 dataRepo2;
 
 	@Override
 	public void write(List<? extends LastName> items) throws Exception {
@@ -40,6 +43,13 @@ public class CsvWriter implements ItemWriter<LastName> {
 
 		}
 
+	}
+	
+	public void write2(List<? extends FirstName> items) throws Exception {
+		for(FirstName firstname : items) {
+			log.debug(firstname.toString());
+			dataRepo2.save(firstname);
+		}
 	}
 	
 	

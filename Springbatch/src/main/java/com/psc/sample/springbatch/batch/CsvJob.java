@@ -34,6 +34,7 @@ public class CsvJob {
 	public Job csvJob_batchBuild() {
 		return jobBuilderFactory.get("csvJob")
 				.start(csvJob_batchStep1())
+				.start(csvJob_batchStep2())
 				.build();
 	}
 	
@@ -45,6 +46,16 @@ public class CsvJob {
 				.reader(csvReader.Lastname_FileReader()) //파일로부터 Read
 				.processor(csvProcessor.processor()) //Read한 데이터 가공
 				.writer(csvWriter) //서버에 Insert
+				.build();
+	}
+	
+	@Bean
+	public Step csvJob_batchStep2() {
+		return stepBuilderFactory.get("csvJob1_batchStep2")
+				.<FirstName,FirstName>chunk(chunkSize)
+				.reader(csvReader.Firstname_FileReader())
+//				.processor(csvProcessor.processor())
+//				.writer(csvWriter)
 				.build();
 	}
 

@@ -11,11 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 @Entity
 @Table(name = "firstname")
@@ -24,16 +26,10 @@ public class FirstName {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	/** 성씨 데이터 */
 	@NonNull
 	private String fname;
 	
-	/** 해당 성씨 보유수 -> 추후 연산을 위해 double로 수정해야함 */
 	@NonNull
 	private String occupy;
 
-	@Override
-	public String toString() {
-		return "firstname [성=" + fname + ", 명=" + occupy + "]";
-	}
 }
