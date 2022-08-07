@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import com.psc.sample.springbatch.domain.FirstName;
+import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,55 +19,28 @@ import lombok.extern.slf4j.Slf4j;
 public class CsvReader {
 
 	@Bean
-	public FlatFileItemReader<FirstName> csvJob1_FileReader() {
-		FlatFileItemReader<FirstName> flatFileItemReader = new FlatFileItemReader<>();
+	public FlatFileItemReader<LastName> Lastname_FileReader() {
+		FlatFileItemReader<LastName> flatFileItemReader = new FlatFileItemReader<>();
 		flatFileItemReader.setResource(new ClassPathResource("/sample/name2.csv"));
 		flatFileItemReader.setLinesToSkip(1);
-//		flatFileItemReader.setLinesToSkip();
 		flatFileItemReader.setEncoding("UTF-8");
 
-		DefaultLineMapper<FirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
+		DefaultLineMapper<LastName> dtoDefaultLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-		delimitedLineTokenizer.setNames("fname", "occupy");
+		delimitedLineTokenizer.setNames("lname", "occupy");
 		delimitedLineTokenizer.setDelimiter(",");
 
-		BeanWrapperFieldSetMapper<FirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FirstName>();
-		beanWrapperFieldSetMapper.setTargetType(FirstName.class);
+		BeanWrapperFieldSetMapper<LastName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<LastName>();
+		beanWrapperFieldSetMapper.setTargetType(LastName.class);
 
 		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
 		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
 		flatFileItemReader.setLineMapper(dtoDefaultLineMapper);
 
+		log.debug("Finish file to read");
 		return flatFileItemReader;
 
 	}
-	
 
-//	@Bean
-//	public FlatFileItemReader<TwoDto> csvJob1_FileReader() {
-//		FlatFileItemReader<TwoDto> flatFileItemReader = new FlatFileItemReader<>();
-//		flatFileItemReader.setResource(new ClassPathResource("/sample/name2.csv"));
-//		flatFileItemReader.setLinesToSkip(1);
-//		flatFileItemReader.setEncoding("UTF-8");
-//
-//		DefaultLineMapper<TwoDto> dtoDefaultLineMapper = new DefaultLineMapper<>();
-//
-//		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-//		// 파라미터
-//		delimitedLineTokenizer.setNames("one", "two");
-//		// 구분자
-//		delimitedLineTokenizer.setDelimiter(",");
-//
-//		BeanWrapperFieldSetMapper<TwoDto> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<TwoDto>();
-//		// TwoDto 객체로 받음
-//		beanWrapperFieldSetMapper.setTargetType(TwoDto.class);
-//
-//		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
-//		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
-//		flatFileItemReader.setLineMapper(dtoDefaultLineMapper);
-//
-//		return flatFileItemReader;
-//
-//	}
 }

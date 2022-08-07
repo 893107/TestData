@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.psc.sample.springbatch.domain.FirstName;
+import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,20 +31,20 @@ public class CsvJob {
 	
 	//select -> 
 	@Bean 
-	public Job csvJob1_batchBuild() {
-		return jobBuilderFactory.get("csvJob1")
-				.start(csvJob1_batchStep1())
+	public Job csvJob_batchBuild() {
+		return jobBuilderFactory.get("csvJob")
+				.start(csvJob_batchStep1())
 				.build();
 	}
 	
 	
 	@Bean
-	public Step csvJob1_batchStep1() {
+	public Step csvJob_batchStep1() {
 		return stepBuilderFactory.get("csvJob1_batchStep1")
-				.<FirstName,FirstName>chunk(chunkSize)
-				.reader(csvReader.csvJob1_FileReader()) //읽기  FirstName
-				.processor(csvProcessor.processor()) //가공
-				.writer(csvWriter) //액션
+				.<LastName,LastName>chunk(chunkSize)
+				.reader(csvReader.Lastname_FileReader()) //파일로부터 Read
+				.processor(csvProcessor.processor()) //Read한 데이터 가공
+				.writer(csvWriter) //서버에 Insert
 				.build();
 	}
 

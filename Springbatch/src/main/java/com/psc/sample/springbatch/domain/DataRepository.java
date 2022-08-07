@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DataRepository extends JpaRepository<FirstName, Integer>{
+public interface DataRepository extends JpaRepository<LastName, Integer>{
 	
-	List<FirstName> findByFname(String fname);
+	List<LastName> findByLname(String lname);
 	
 }
