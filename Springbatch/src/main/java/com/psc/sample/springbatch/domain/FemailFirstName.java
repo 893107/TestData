@@ -20,16 +20,16 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name = "firstname")
-public class FirstName {
+@Table(name = "femailfirstname")
+public class FemailFirstName {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NonNull
-	private String fname;
+	private String femaleName;
 	
 	@NonNull
-	private String occupy;
+	private String count;
 
 }

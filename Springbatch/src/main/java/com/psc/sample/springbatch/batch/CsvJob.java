@@ -9,7 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.psc.sample.springbatch.domain.FirstName;
+import com.psc.sample.springbatch.domain.FemailFirstName;
 import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
@@ -52,7 +52,7 @@ public class CsvJob {
 	@Bean
 	public Step csvJob_batchStep2() {
 		return stepBuilderFactory.get("csvJob1_batchStep2")
-				.<FirstName,FirstName>chunk(chunkSize)
+				.<FemailFirstName,FemailFirstName>chunk(chunkSize)
 				.reader(csvReader.Firstname_FileReader())
 //				.processor(csvProcessor.processor())
 //				.writer(csvWriter)

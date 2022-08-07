@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.psc.sample.springbatch.domain.DataRepository;
 import com.psc.sample.springbatch.domain.DataRepository2;
-import com.psc.sample.springbatch.domain.FirstName;
+import com.psc.sample.springbatch.domain.FemailFirstName;
 import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
@@ -45,8 +45,8 @@ public class CsvWriter implements ItemWriter<LastName> {
 
 	}
 	
-	public void write2(List<? extends FirstName> items) throws Exception {
-		for(FirstName firstname : items) {
+	public void write2(List<? extends FemailFirstName> items) throws Exception {
+		for(FemailFirstName firstname : items) {
 			log.debug(firstname.toString());
 			dataRepo2.save(firstname);
 		}

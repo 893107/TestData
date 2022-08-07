@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import com.psc.sample.springbatch.domain.FirstName;
+import com.psc.sample.springbatch.domain.FemailFirstName;
 import com.psc.sample.springbatch.domain.LastName;
 
 import lombok.RequiredArgsConstructor;
@@ -45,20 +45,20 @@ public class CsvReader {
 	}
 	
 	@Bean
-	public FlatFileItemReader<FirstName> Firstname_FileReader() {
-		FlatFileItemReader<FirstName> flatFileItemReader = new FlatFileItemReader<>();
-		flatFileItemReader.setResource(new ClassPathResource("/sample/name2.csv"));
+	public FlatFileItemReader<FemailFirstName> Firstname_FileReader() {
+		FlatFileItemReader<FemailFirstName> flatFileItemReader = new FlatFileItemReader<>();
+		flatFileItemReader.setResource(new ClassPathResource("/sample/female_fname.csv"));
 		flatFileItemReader.setLinesToSkip(1);
 		flatFileItemReader.setEncoding("UTF-8");
 
-		DefaultLineMapper<FirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
+		DefaultLineMapper<FemailFirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-		delimitedLineTokenizer.setNames("lname", "occupy");
+		delimitedLineTokenizer.setNames("femaleName", "occupy");
 		delimitedLineTokenizer.setDelimiter(",");
 
-		BeanWrapperFieldSetMapper<FirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FirstName>();
-		beanWrapperFieldSetMapper.setTargetType(FirstName.class);
+		BeanWrapperFieldSetMapper<FemailFirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FemailFirstName>();
+		beanWrapperFieldSetMapper.setTargetType(FemailFirstName.class);
 
 		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
 		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
