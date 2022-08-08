@@ -34,7 +34,7 @@ public class CsvJob {
 	public Job csvJob_batchBuild() {
 		return jobBuilderFactory.get("csvJob")
 				.start(csvJob_batchStep1())
-				.start(csvJob_batchStep2())
+//				.start(csvJob_batchStep2())
 				.build();
 	}
 	
@@ -49,14 +49,14 @@ public class CsvJob {
 				.build();
 	}
 	
-	@Bean
-	public Step csvJob_batchStep2() {
-		return stepBuilderFactory.get("csvJob1_batchStep2")
-				.<FemailFirstName,FemailFirstName>chunk(chunkSize)
-				.reader(csvReader.Firstname_FileReader())
+//	@Bean
+//	public Step csvJob_batchStep2() {
+//		return stepBuilderFactory.get("csvJob1_batchStep2")
+//				.<FemailFirstName,FemailFirstName>chunk(chunkSize)
+//				.reader(csvReader.Firstname_FileReader())
 //				.processor(csvProcessor.processor())
 //				.writer(csvWriter)
-				.build();
-	}
+//				.build();
+//	}
 
 }

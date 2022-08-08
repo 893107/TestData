@@ -20,7 +20,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost/batchtest?characterEncoding=UTF-8
     username: root
-    password: playdata  
+    password: Qwer123$
   batch:
     job:
       names: ${job.name:NONE}
