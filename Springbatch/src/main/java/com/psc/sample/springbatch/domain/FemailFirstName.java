@@ -17,11 +17,12 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
 @Entity
 @Table(name = "femailfirstname")
 public class FemailFirstName {
+	
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,5 +32,7 @@ public class FemailFirstName {
 	
 	@NonNull
 	private String count;
+	
+
 
 }

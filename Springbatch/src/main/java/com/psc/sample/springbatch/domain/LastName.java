@@ -28,13 +28,15 @@ public class LastName {
 	private String lname;
 	
 	@NonNull
-	private String occupy;
+	private int start;
 	
-//	@NonNull
-//	private String occupy2;
-	
+	@NonNull
+	private int end;
+
 	@Override
 	public String toString() {
-		return "lastname [성=" + lname + ", 명=" + occupy + "]";
+		return "LastName [id=" + id + ", lname=" + lname + ", start=" + start + ", end=" + end + "]";
 	}
+	
+	
 }
