@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import com.psc.sample.springbatch.domain.CustomData;
-import com.psc.sample.springbatch.domain.FemailFirstName;
+import com.psc.sample.springbatch.domain.FemaleFirstName;
 import com.psc.sample.springbatch.domain.LastNameImport;
 import com.psc.sample.springbatch.domain.MaleFirstName;
 
@@ -47,20 +47,20 @@ public class CsvReader {
 	}
 	
 	@Bean
-	public FlatFileItemReader<FemailFirstName> Firstname_FileReader() {
-		FlatFileItemReader<FemailFirstName> flatFileItemReader = new FlatFileItemReader<>();
-		flatFileItemReader.setResource(new ClassPathResource("/sample/female_final.csv"));
+	public FlatFileItemReader<FemaleFirstName> Firstname_FileReader() {
+		FlatFileItemReader<FemaleFirstName> flatFileItemReader = new FlatFileItemReader<>();
+		flatFileItemReader.setResource(new ClassPathResource("/sample/female_fname.csv"));
 		flatFileItemReader.setLinesToSkip(1);
 		flatFileItemReader.setEncoding("UTF-8");
 
-		DefaultLineMapper<FemailFirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
+		DefaultLineMapper<FemaleFirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-		delimitedLineTokenizer.setNames("femaleName", "count");
+		delimitedLineTokenizer.setNames("femaleName", "fnamerank", "count");
 		delimitedLineTokenizer.setDelimiter(",");
 
-		BeanWrapperFieldSetMapper<FemailFirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FemailFirstName>();
-		beanWrapperFieldSetMapper.setTargetType(FemailFirstName.class);
+		BeanWrapperFieldSetMapper<FemaleFirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<FemaleFirstName>();
+		beanWrapperFieldSetMapper.setTargetType(FemaleFirstName.class);
 
 		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
 		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
@@ -74,14 +74,14 @@ public class CsvReader {
 	@Bean
 	public FlatFileItemReader<MaleFirstName> Firstname_FileReader2() {
 		FlatFileItemReader<MaleFirstName> flatFileItemReader = new FlatFileItemReader<>();
-		flatFileItemReader.setResource(new ClassPathResource("/sample/male_final.csv"));
+		flatFileItemReader.setResource(new ClassPathResource("/sample/male_fname.csv"));
 		flatFileItemReader.setLinesToSkip(1);
 		flatFileItemReader.setEncoding("UTF-8");
 
 		DefaultLineMapper<MaleFirstName> dtoDefaultLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-		delimitedLineTokenizer.setNames("maleName", "count");
+		delimitedLineTokenizer.setNames("maleName", "mnamerank",  "count");
 		delimitedLineTokenizer.setDelimiter(",");
 
 		BeanWrapperFieldSetMapper<MaleFirstName> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<MaleFirstName>();
@@ -96,30 +96,30 @@ public class CsvReader {
 
 	}
 	
-	@Bean
-	public FlatFileItemReader<CustomData> Firstname_FileReader3() {
-		FlatFileItemReader<CustomData> flatFileItemReader = new FlatFileItemReader<>();
-//		flatFileItemReader.setResource(new ClassPathResource("/sample/male_final.csv")); //파일로부터 read 대신 입력값으로 수정 예정
-//		flatFileItemReader.setLinesToSkip(1);
-		flatFileItemReader.setEncoding("UTF-8");
-
-		DefaultLineMapper<CustomData> dtoDefaultLineMapper = new DefaultLineMapper<>();
-
-		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-		delimitedLineTokenizer.setNames("age", "log", "grade");
-		delimitedLineTokenizer.setDelimiter(",");
-
-		BeanWrapperFieldSetMapper<CustomData> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<CustomData>();
-		beanWrapperFieldSetMapper.setTargetType(CustomData.class);
-
-		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
-		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
-		flatFileItemReader.setLineMapper(dtoDefaultLineMapper);
-
-		log.debug("Finish file to read");
-		return flatFileItemReader;
-
-	}
+//	@Bean
+//	public FlatFileItemReader<CustomData> Firstname_FileReader3() {
+//		FlatFileItemReader<CustomData> flatFileItemReader = new FlatFileItemReader<>();
+////		flatFileItemReader.setResource(new ClassPathResource("/sample/male_final.csv")); //파일로부터 read 대신 입력값으로 수정 예정
+////		flatFileItemReader.setLinesToSkip(1);
+//		flatFileItemReader.setEncoding("UTF-8");
+//
+//		DefaultLineMapper<CustomData> dtoDefaultLineMapper = new DefaultLineMapper<>();
+//
+//		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
+//		delimitedLineTokenizer.setNames("age", "log", "grade");
+//		delimitedLineTokenizer.setDelimiter(",");
+//
+//		BeanWrapperFieldSetMapper<CustomData> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<CustomData>();
+//		beanWrapperFieldSetMapper.setTargetType(CustomData.class);
+//
+//		dtoDefaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
+//		dtoDefaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
+//		flatFileItemReader.setLineMapper(dtoDefaultLineMapper);
+//
+//		log.debug("Finish file to read");
+//		return flatFileItemReader;
+//
+//	}
 
 
 }

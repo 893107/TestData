@@ -5,13 +5,12 @@ import javax.persistence.EntityManagerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.psc.sample.springbatch.domain.CustomData;
-import com.psc.sample.springbatch.domain.FemailFirstName;
-import com.psc.sample.springbatch.domain.LastName;
+import com.psc.sample.springbatch.domain.FemaleFirstName;
 import com.psc.sample.springbatch.domain.LastNameImport;
 import com.psc.sample.springbatch.domain.MaleFirstName;
 
@@ -36,7 +35,8 @@ public class CsvJob {
 	private static final int chunkSize = 5;
 	
  
-	@Bean 
+	@Bean
+//	@JobScope
 	public Job csvJob_batchBuild() {
 		return jobBuilderFactory.get("csvJob")
 				.start(csvJob_batchStep1())
@@ -60,7 +60,7 @@ public class CsvJob {
 	@Bean
 	public Step csvJob_batchStep2() {
 		return stepBuilderFactory.get("csvJob_batchStep2")
-				.<FemailFirstName , FemailFirstName>chunk(chunkSize)		
+				.<FemaleFirstName , FemaleFirstName>chunk(chunkSize)		
 				.reader(csvReader.Firstname_FileReader())
 //				.processor(csvProcessor.processor())
 				.writer(csvWriter2)

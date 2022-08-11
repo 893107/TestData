@@ -30,6 +30,9 @@ public class MaleFirstName {
 	private String maleName;
 	
 	@NonNull
+	private String mnamerank;
+	
+	@NonNull
 	private String count;
 
 }

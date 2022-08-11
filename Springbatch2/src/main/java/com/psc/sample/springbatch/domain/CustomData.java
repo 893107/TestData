@@ -27,6 +27,10 @@ public class CustomData {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private int numint;
+	
+	private int numdouble;
+	
 	private int age;
 	
 	private String loc;

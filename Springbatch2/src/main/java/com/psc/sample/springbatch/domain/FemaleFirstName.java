@@ -17,19 +17,25 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
 @Entity
-@Table(name = "mailfirstname")
-public class MailFirstName {
+@Table(name = "femalefirstname")
+public class FemaleFirstName {
+	
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NonNull
-	private String maleName;
+	private String femaleName;
+	
+	@NonNull
+	private String fnamerank;
 	
 	@NonNull
 	private String count;
+	
+
 
 }

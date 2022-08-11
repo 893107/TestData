@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.psc.sample.springbatch.domain.DataRepository;
 import com.psc.sample.springbatch.domain.DataRepository2;
-import com.psc.sample.springbatch.domain.FemailFirstName;
+import com.psc.sample.springbatch.domain.FemaleFirstName;
 import com.psc.sample.springbatch.domain.LastName;
 import com.psc.sample.springbatch.domain.LastNameImport;
 
