@@ -1,0 +1,20 @@
+plugins {
+	id 'java'
+	id 'war'
+}
+
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	//CSV 생성용
+	implementation 'org.apache.commons:commons-csv:1.9.0'
+	//Excel 생성용	
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+	implementation group: 'org.apache.poi', name: 'poi', version: '4.1.2'
+	//Excel 읽기
+	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+}
